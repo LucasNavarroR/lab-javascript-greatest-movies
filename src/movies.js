@@ -133,31 +133,41 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
- 
-
+  
+  
   for (let i = 1800; i < new Date().getFullYear(); i++) {
-    let orderedYears = [];
     
+    let orderedYears = [];
 
     moviesArray.filter((each) => {
-      if (each.year === i) {
+      
+      if (each.year !== i) {
+
+        
+
+      } else if (each.year === i) {
         orderedYears.year = i;
         if (orderedYears.year === each.year) {
           orderedYears.push(each);
         }
       }
+      
+      
     });
-
-    for (let i = 0; i < orderedYears.length; i++) {
-      if (orderedYears[i].length === 0) {
-        console.log(orderedYears[i])
-        delete orderedYears.orderedYears[i];
-
-      }
-    }
-    //console.log(orderedYears);
-    //return orderedYears
+    console.log(orderedYears)
   }
+
+
+  for (let i = 0; i < orderedYears.length; i++) {
+    
+    if (orderedYears[i].length === 0) {
+      console.log(orderedYears[i])
+      delete orderedYears.orderedYears[i];
+
+    }
+  }
+  
+
   //console.log(orderedYears);
   //  let getAvg = orderedYears.reduce((acc, each) => {
   //     if (each.year.score !== undefined) {
