@@ -76,28 +76,96 @@ function orderByYear(moviesArray) {
     } else {
       return 0;
     }
-  })
+  });
   let cloneMoviesArray2 = JSON.parse(JSON.stringify(cloneMoviesArray1));
 
-  cloneMoviesArray2.sort((elem2,elem1) => {
+  cloneMoviesArray2.sort((elem2, elem1) => {
     if (elem2.title > elem1.title && elem2.year === elem1.year) {
-        return 1;
-      } else if (elem2.title < elem1.title && elem2.year === elem1.year) {
-        return -1;
-      } else {
-        return 0;
-      }
-  })
-  ;
-  console.log(cloneMoviesArray2)
+      return 1;
+    } else if (elem2.title < elem1.title && elem2.year === elem1.year) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
   return cloneMoviesArray2;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  let cloneMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+
+  let cloneMoviesArraySorted = cloneMoviesArray.sort((elem2, elem1) => {
+    if (elem2.title > elem1.title) {
+      return 1;
+    } else if (elem2.title < elem1.title) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
+  cloneMoviesArraySliced = cloneMoviesArraySorted.slice(0, 20);
+
+  let moviesArrName = cloneMoviesArraySliced.map((pointer) => {
+    return pointer.title;
+  });
+
+  return moviesArrName;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let cloneMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+  cloneMoviesArray.forEach((cadaElemento) => {
+    let num = Number(cadaElemento.duration.slice(2, -3));
+
+    if (typeof num === undefined) {
+      num = 0;
+    }
+
+    cadaElemento.duration = Number(cadaElemento.duration[0]) * 60 + num;
+  });
+
+  return cloneMoviesArray;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+ 
+
+  for (let i = 1800; i < new Date().getFullYear(); i++) {
+    let orderedYears = [];
+    
+
+    moviesArray.filter((each) => {
+      if (each.year === i) {
+        orderedYears.year = i;
+        if (orderedYears.year === each.year) {
+          orderedYears.push(each);
+        }
+      }
+    });
+
+    for (let i = 0; i < orderedYears.length; i++) {
+      if (orderedYears[i].length === 0) {
+        console.log(orderedYears[i])
+        delete orderedYears.orderedYears[i];
+
+      }
+    }
+    //console.log(orderedYears);
+    //return orderedYears
+  }
+  //console.log(orderedYears);
+  //  let getAvg = orderedYears.reduce((acc, each) => {
+  //     if (each.year.score !== undefined) {
+  //       return acc + Number(each.year.score);
+  //     } else {
+  //       return acc;
+  //     }
+  //   }, 0) / each.year.length
+  //  console.log(getAvg)
+  //   return getAvg
+}
